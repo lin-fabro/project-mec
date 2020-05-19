@@ -29,10 +29,10 @@
       <!-- ******************** -->
       <section class="shadow p-3 bg-white rounded" id="gridSection">
 
-        <div class="row justify-content-between">
+        <div class="row justify-content-center">
           <!-- Heading -->
           @isset($breadcrumbs)
-            <h2 class="m-3">
+            <h2 class="m-3 p-0 gridHeading"><i class="fas fa-wrench wrench1"></i> 
             @foreach ($breadcrumbs as $breadcrumb)
               @if($loop -> last)
                 {{$breadcrumb->name}}
@@ -42,7 +42,7 @@
             @isset($keyword)
               : {{ $keyword }}
             @endisset
-          </h2>
+           <i class="fas fa-wrench wrench2"></i></h2>
           @endisset
         </div>
 

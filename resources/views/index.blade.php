@@ -13,7 +13,7 @@
             <h2 class="m-2">FEATURED PRODUCTS</h2>
           </div>
 
-          <div id="carouselExampleIndicators" class="carousel slide mx-auto" style="width: 75%;" data-ride="carousel">
+          <div id="carouselExampleCaptions" class="carousel slide mx-auto w-70" data-ride="carousel">
             <ol class="carousel-indicators">
               @if($images_count > 1)
                 @for($i = 0; $i < $images_count; $i++)
@@ -24,19 +24,28 @@
                   @endif
                 @endfor
               @endif
+            
             </ol>
+      
             <div class="carousel-inner">
             @foreach ($featured_images as $feature)
               @if($loop -> first)
+
               <div class="carousel-item active">
-                <img class="d-block w-100" src="{{$feature}}" alt="">
-                <div class="carousel-caption d-block">
+                <img src="{{$feature}}" class="d-block w-75 mx-auto" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <!-- Caption -->
+                  <h5>First slide label</h5>
                 </div>
               </div>
+
               @else
+
               <div class="carousel-item">
-                <img class="d-block w-100" src="{{$feature}}" alt="">
+                <img src="{{$feature}}" class="d-block w-75 mx-auto" alt="...">
                 <div class="carousel-caption d-none d-md-block">
+                  <!-- Caption -->
+                  <h5>Second slide label</h5>
                 </div>
               </div>
               @endif
@@ -44,17 +53,20 @@
             </div>
 
             @if($images_count > 1)
-            <a class="carousel-control-prev" role="button" data-slide="prev">
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" role="button" data-slide="next">
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
             @endif
           </div>
+
         </div>
+
+
       </section>
       @endif
 
@@ -216,13 +228,14 @@
           </div>
 
           <!-- Captcha -->
-          <div class="form-group row">
+          <div class="form-group row my-4">
 
-            <label for="captcha" class="col-md-2 col-form-label">@captcha</label>
+            <label for="captcha" class="col-12 col-form-label text-center">@captcha</label>
+            
+            
+            <div class="col-12 d-flex justify-content-center">
 
-            <div class="col-md-10">
-
-              <input type="text" class="form-control" name="captcha" autocomplete="off" required  placeholder="Input captcha">
+              <input type="text" class="form-control text-center" name="captcha" autocomplete="off" required  placeholder="Input captcha" id="captchaInput">
               @error('captcha')
                   <div class="alert alert-danger">{{ $message }}</div>
               @enderror

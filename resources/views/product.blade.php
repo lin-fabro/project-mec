@@ -84,11 +84,11 @@
         <div class="my-3" id="table1">
           <table>
             <tr>
-              <th style="width: 20%">Series no.</th>
-              <th style="width: 20%">Product ID</th>
-              <th style="width: 20%">Size</th>
-              <th style="width: 20%">Box / Carton</th>
-              <th style="width: 20%">Note</th>
+              <th>Series no.</th>
+              <th>Product ID</th>
+              <th>Size</th>
+              <th>Box / Carton</th>
+              <th>Note</th>
             </tr>
             <!-- Loop here product items -->
             @foreach($product_items as $item)
@@ -105,6 +105,9 @@
 
         <!-- Cards -->
         <div id="cardGrp">
+
+          <h2 class="m-3">Item List</h2>
+
         <!-- Loop here product items -->
         @foreach($product_items as $item)
             <div class="card m-2">
@@ -130,7 +133,7 @@
       <!-- ***** Related Items *****  -->
       <!-- ******************** -->
       <section class="shadow p-3 bg-white rounded">
-        <div class="m-3 mb-5"><h2>Related Items</h2></div>
+        <div class="m-3"><h2>Related Items</h2></div>
 
         <!-- Cards -->
         <div class="row">
