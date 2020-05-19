@@ -46,7 +46,7 @@
       <!-- Search Bar -->
       <ul class="list-unstyled components">
         <li>
-          <form class="form-inline ml-1 mb-2" method="GET" action="{{$search_action}}">
+          <form class="form-inline mx-1 mb-2" method="GET" action="{{$search_action}}">
             <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="keyword" name="keyword">
             <button class="btn searchIcon" type="submit"><i class="fas fa-search"></i></button>
           </form>
@@ -688,9 +688,11 @@
       <!-- ******************** -->
       <!-- ***** Contact Email Information *****  -->
       <!-- ******************** -->
-      <div class="bg-light" id="contact_email">
-        <span><i class="far fa-envelope emailIcon"></i> inshara@info.com</span>
-        <span class="ml-3"><i class="far fa-envelope emailIcon"></i> meikotools@gmail.com</span>
+      <div class="" id="contact_email">
+        <span class="mr-3" style="white-space:pre;"><i class="far fa-envelope emailIcon"></i> inshara@info.com</span>
+        <span class="mr-3" style="white-space:pre;"><i class="far fa-envelope emailIcon"></i> meikotools@gmail.com</span>
+        <span class="mr-3" style="white-space:pre;"><i class="fab fa-facebook-square" style="color:#385898;"></i> ---</span>
+        <span class="" style="white-space:pre;"><i class="fab fa-facebook-messenger" style="color:#385898;"></i> ---</span>
 
       </div>
 
@@ -701,17 +703,21 @@
 
       <nav class="navbar navbar-expand-lg navbar-light justify-content-between sticky-top mb-0 py-0" id="navbar">
 
-        <div id="buttonLogo">
+        <div id="buttonLogo" style="display:inline;">
           <!-- Toggle Sidebar Button -->
+
           <button type="button" id="sidebarCollapse" class="btn">
             <i class="fas fa-bars icons"></i>
             <span>Toggle Sidebar</span>
           </button>
 
+
           <!-- Meiko Logo -->
+
           <a class="navbar-brand" href="/" id="meikoLogo">
             <img src="/images/logo/meiko_icon.jpg" alt="Meiko Tools">
           </a>
+
         </div>
 
         <!-- Navbar Items -->
@@ -792,9 +798,6 @@
       <div id="goToTop">
         <a href="/#contact_email"><i class="fas fa-arrow-up icons"></i></a>
       </div>
-
-      <!-- Small Button Background -->
-      <div id="smallButtonBg"></div>
 
 
       <!-- Content End -->
