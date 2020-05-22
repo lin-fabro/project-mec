@@ -69,8 +69,27 @@
       </section>
       @endif
 
+        <!-- ******************** -->
+        <!-- ***** Grid/Cards: Categories *****  -->
+        <!-- ******************** -->
 
-
+        <section class="shadow p-3 bg-white rounded" id="gridSection">
+        <div><h2 class="m-3 mb-5">ALL PRODUCTS</h2></div>
+        <div class="row">
+        @foreach($sub_categories as $sub_category)
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card">
+              <img src="{{ $sub_category->image_path }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ $sub_category -> name}}</h5>
+                <p class="card-text"></p>
+                <a href="/categories/{{ $sub_category->code }}" class="stretched-link"></a>
+              </div>
+            </div>
+          </div>
+        @endforeach
+        </div>
+      </section>
 
       <!-- ******************** -->
       <!-- ***** Grid: About Meiko *****  -->
