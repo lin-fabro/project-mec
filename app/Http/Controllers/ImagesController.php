@@ -26,11 +26,21 @@ class ImagesController extends Controller
     public function index()
     {
         $anchor = request('anchor');
-        $search_action = '/search';
         $featured_images = $this -> get_featured_images();
         $images_count = count($featured_images);
 
+        $category_code = request('category_code');
+
+        if ($category_code == null) {
+            $category_code = "00.00.00";
+        }
+        $search_action = Config::get('constants.default_action');
+
+        $sub_categories = Categories::get_sub_category_by_code($category_code);
+        $sub_categories = $this->get_category_image($sub_categories);
+
         return view('index',['search_action' => $search_action,
+        'sub_categories' => $sub_categories,
             'featured_images' => $featured_images,
             'images_count' => $images_count,
             'homepage' => true]);

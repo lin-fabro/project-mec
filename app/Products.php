@@ -50,7 +50,7 @@ class Products extends Model
                 ,'products.features_benefits','products.includes','products.functionalities','products.phase_out')
         -> when($pagesize == Config::get('constants.options.relevant_size'), function($query) use ($pagesize){
             return $query -> inRandomOrder();
-        })-> paginate($pagesize)
+        })-> paginate($pagesize)->onEachSide(1)
         -> appends($querystringArray);
    }
 }
