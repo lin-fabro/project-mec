@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->text('features_benefits')->nullable();
             $table->text('includes')->nullable();
             $table->text('functionalities')->nullable();
+            $table->text('category_tags');
             $table->boolean('phase_out');
             $table->timestamps();
         });

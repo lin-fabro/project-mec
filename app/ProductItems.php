@@ -16,7 +16,7 @@ class ProductItems extends Model
    public static function get_product_items($product_id){
 
     return ProductItems::where('product_id', '=', $product_id)
-            ->orderBy('product_code','ASC')->get();
+            ->orderBy('series_number','ASC')->get();
 
    }
 }

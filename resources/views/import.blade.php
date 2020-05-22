@@ -41,6 +41,8 @@
     </div>
    </form>
 
+   @if($data_count>0)
+
    <form method="post" enctype="multipart/form-data" action="{{ url('/import_excel/publish') }}">
     {{ csrf_field() }}
     <div class="form-group">
@@ -118,4 +120,5 @@
     </div>
    </div>
   </div>
+  @endif
   @endsection

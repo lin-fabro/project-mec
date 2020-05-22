@@ -26,7 +26,8 @@ class Products extends Model
    }
 
    public static function get_products($keyword, $category_code, $querystringArray, $pagesize, $series_code){
-    //return  DB::table('products')
+
+
     return  Products::select('products.id','products.category_code','products.series_code','products.name','products.color','products.material'
                 ,'products.features_benefits','products.includes','products.functionalities','products.phase_out')
         -> when($series_code, function($query) use ($series_code){
@@ -39,6 +40,7 @@ class Products extends Model
                 -> orWhere('products.includes', 'LIKE', '%'.$keyword.'%')
                 -> orWhere('products.functionalities', 'LIKE', '%'.$keyword.'%')
                 -> orWhere('products.color', 'LIKE', '%'.$keyword.'%')
+                -> orWhere('products.category_tags', 'LIKE', '%'.$keyword.'%')
                 -> orWhere('product_items.note', 'LIKE', '%'.$keyword.'%')
                 -> orWhere('product_items.series_number', 'LIKE', '%'.$keyword.'%')
                 -> orWhere('product_items.product_code', 'LIKE', '%'.$keyword.'%');
