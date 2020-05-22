@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    <a href="/import_excel" class="stretched-link">Import Excel </a>
+                    <p><a href="/import_excel/template" class="link">Download Import Template</a></p>
+                    <p><a href="/import_excel" class="link">Import Excel </a></p>
+                    <p><a href="/inquiry/list" class="link">Show Inquiries </a></p>
                 </div>
             </div>
         </div>

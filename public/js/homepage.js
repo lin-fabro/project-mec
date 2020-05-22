@@ -1,12 +1,8 @@
 $(document).ready(function () {
-    $("#sidebar").mCustomScrollbar({
-        theme: "minimal"
-    });
-
 
     // Dismiss & Overlay
     $('#dismiss, .overlay').on('click', function () {
-        $('#sidebar, #content').addClass('active');
+        $('#sidebar, #content').removeClass('active');
         $('.overlay').removeClass('active');
     });
 
@@ -14,8 +10,6 @@ $(document).ready(function () {
     $('#sidebarCollapse, #sidebarCollapseSmall').on('click', function () {
         $('#sidebar, #content').toggleClass('active');
         $('.overlay').toggleClass('active');
-        $('.collapse.in').toggleClass('in');
-        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
 
 
@@ -190,7 +184,7 @@ $(document).ready(function () {
 var expandImg = document.getElementById("bigPic");
 
 var smallPicOne = document.querySelector(".smallPic");
-expandImg.src=smallPicOne.src;
+expandImg.src = smallPicOne.src;
 
 var smallPics = document.getElementsByClassName("smallPic");
 
@@ -200,3 +194,6 @@ for (var i=0; i<smallPics.length; i++){
         expandImg.src = this.src;
     });
 }
+
+
+

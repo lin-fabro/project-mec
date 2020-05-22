@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Inquiries;
 use Illuminate\Http\Request;
+use App\Exports\InquiriesExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+use Illuminate\Support\Facades\DB;
 
 class InquiriesController extends Controller
 {
@@ -19,6 +23,34 @@ class InquiriesController extends Controller
             'inquiry_order' => 'required',
             'captcha' => 'required|captcha',
         ]);
+
+        $inquiry = new Inquiries();
+
+        $inquiry->last_name = request('last_name');
+        $inquiry->first_name = request('first_name');
+        $inquiry->company = request('company_name');
+        $inquiry->email = request('email');
+        $inquiry->contact_no = request('contact_no');
+        $inquiry->inquiry = request('inquiry_order');
+        $inquiry->created_at = now();
+        $inquiry->updated_at = now();
+
+        $inquiry->save();
+
+        $details = array(
+            'created_at' => $inquiry->created_at,
+            'last_name' => $request->get('last_name'),
+            'first_name' => $request->get('first_name'),
+            'email' => $request->get('email'),
+            'company' => $request->get('company_name'),
+            'contact_no' => $request->get('contact_no'),
+            'inquiry' => $request->get('inquiry_order')
+        );
+
+        \Mail::to('meikotools@gmail.com')
+            ->send(new \App\Mail\Inquiries($details));
+
+        return back()->with('success', 'Thank you. Your inquiry has been submitted.');
     }
 
     /**
@@ -28,28 +60,12 @@ class InquiriesController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $data = DB::table('inquiries')->orderBy('id', 'ASC')->get();
+        $data_count = count($data);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('inquiry.list', [
+            'data' => $data,
+            'data_count'=> $data_count]);
     }
 
     /**
@@ -58,42 +74,35 @@ class InquiriesController extends Controller
      * @param  \App\Inquiries  $inquiries
      * @return \Illuminate\Http\Response
      */
-    public function show(Inquiries $inquiries)
+    public function show($id)
     {
-        //
-    }
+        $inquiry = Inquiries::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Inquiries  $inquiries
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Inquiries $inquiries)
-    {
-        //
+        return view('inquiry.show', ['inquiry' => $inquiry]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Inquiries  $inquiries
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Inquiries $inquiries)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Inquiries  $inquiries
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Inquiries $inquiries)
+    public function destroy($id)
     {
-        //
+        $inquiry = Inquiries::findOrFail($id);
+        $inquiry->delete();
+
+        return redirect('/inquiry/list')->with('success','Inquiry has been deleted.');
+    }
+
+    public function delete()
+    {
+        Inquiries::truncate();
+
+        return redirect('/inquiry/list')->with('success','All inquiries has been deleted.');
+    }
+
+    public function export()
+    {
+        return new InquiriesExport();
     }
 }

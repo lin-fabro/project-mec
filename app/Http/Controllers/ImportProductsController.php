@@ -12,6 +12,7 @@ use App\Imports\DataFromExcelImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ImportProductsController extends Controller
 {
@@ -27,7 +28,12 @@ class ImportProductsController extends Controller
     function index()
     {
      $data = DB::table('import_products')->orderBy('series_number', 'ASC')->get();
-     return view('import', compact('data'));
+     //return view('import', compact('data'));
+     $data_count = count($data);
+
+        return view('import', [
+            'data' => $data,
+            'data_count'=> $data_count]);
     }
 
     public function import(Request $request)
@@ -37,12 +43,16 @@ class ImportProductsController extends Controller
             'select_file'  => 'required|mimes:xls,xlsx'
         ]);
 
-        $path = $request->file('select_file')->getRealPath();
-
         //This will delete all records from the import_products table
         ImportProducts::truncate();
         try {
+
+            $temp_file = $request->file('select_file')->store('temp');
+            $path=storage_path('app').'/'.$temp_file;
+
             Excel::import(new DataFromExcelImport, $path);
+            Storage::delete($temp_file);
+
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             $failures = $e->failures();
             $errormessage = "";
@@ -90,6 +100,10 @@ class ImportProductsController extends Controller
 
     }
 
+    public function download(){
+        return response()->download(storage_path("app/public/import_template.xlsx"));
+    }
+
     private function parse_categories($import_product) {
 
         //parse level 1, then perform insert
@@ -129,6 +143,8 @@ class ImportProductsController extends Controller
     private function update_product($import_product){
 
         //this will perform update if the record is existing or create a new one
+
+        $category_tags = $import_product->category_name_one.' '.$import_product->category_name_two.' '.$import_product->category_name_three;
         $product = Products::updateOrCreate(
         [
             'series_code'   => $this->parse_series_code($import_product->series_number)
@@ -142,6 +158,7 @@ class ImportProductsController extends Controller
             'includes'   => $import_product->includes,
             'functionalities'   => $import_product->functionalities,
             'features_benefits'   => $import_product->features_benefits,
+            'category_tags' => $category_tags,
             'phase_out' => false
         ]);
 

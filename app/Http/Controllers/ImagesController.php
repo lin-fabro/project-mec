@@ -7,7 +7,13 @@ use App\Categories;
 use App\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Filesystem\Filesystem;
 
 class ImagesController extends Controller
 {
@@ -19,13 +25,15 @@ class ImagesController extends Controller
      */
     public function index()
     {
+        $anchor = request('anchor');
         $search_action = '/search';
-        $featured_images = $this -> get_images_path(null, 'featured_products');
+        $featured_images = $this -> get_featured_images();
         $images_count = count($featured_images);
 
         return view('index',['search_action' => $search_action,
             'featured_images' => $featured_images,
-            'images_count' => $images_count]);
+            'images_count' => $images_count,
+            'homepage' => true]);
     }
 
     public function get_category_image($categories){
@@ -81,11 +89,26 @@ class ImagesController extends Controller
 
         $img_files = glob($dir_loc.DIRECTORY_SEPARATOR."*.{JPG,PNG,GIF,jpg,gif,png}", GLOB_BRACE);//getting all images
 
-        foreach ($img_files as $img_file) {
-            error_log($img_file);
-        }
-
         return $img_files;
+    }
+
+    private function get_featured_images(){
+
+        $dir_loc = 'images';
+
+        $dir_loc = $dir_loc.DIRECTORY_SEPARATOR.'featured_products';
+
+        $img_files = glob($dir_loc.DIRECTORY_SEPARATOR."*.{JPG,PNG,GIF,jpg,gif,png}", GLOB_BRACE);//getting all images
+
+        $data = [];
+        for ($i=0; $i < count($img_files); $i++) {
+            $series_no = Str::afterLast(Str::beforeLast($img_files[$i],'.'), DIRECTORY_SEPARATOR);
+            $data[$i] = array(
+                'path' => $img_files[$i],
+                'series_no' => $series_no ,
+            );
+        }
+        return $data;
     }
 
 }
