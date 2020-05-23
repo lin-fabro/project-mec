@@ -6,60 +6,90 @@
       <!-- ******************** -->
 
       @if($images_count > 0)
-      <section class="shadow p-3 bg-white rounded">
+      <section class="shadow p-3 bg-white rounded" id="carousel">
 
-        <div>
+
+
+        <div class="carousel slide w-70" id="carouselExampleCaptions" data-ride="carousel">
           <div>
-            <h2 class="m-2">FEATURED PRODUCTS</h2>
+            <h2 class="m-3 mb-4">FEATURED PRODUCTS</h2>
           </div>
 
-          <div id="carouselExampleIndicators" class="carousel slide mx-auto" style="width: 75%;" data-ride="carousel">
-            <ol class="carousel-indicators">
-              @if($images_count > 1)
-                @for($i = 0; $i < $images_count; $i++)
-                  @if($i==0)
-                    <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}" class="active"></li>
-                  @else
-                    <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}"></li>
-                  @endif
-                @endfor
-              @endif
-            </ol>
-            <div class="carousel-inner">
-            @foreach ($featured_images as $feature)
-              @if($loop -> first)
-              <div class="carousel-item active">
-                <img class="d-block w-100" src="{{$feature}}" alt="">
-                <div class="carousel-caption d-block">
-                </div>
+          <ol class="carousel-indicators">
+            @if($images_count > 1)
+              @for($i = 0; $i < $images_count; $i++)
+                @if($i==0)
+                  <li data-target="#carouselExampleCaptions" data-slide-to="{{$i}}" class="active"></li>
+                @else
+                  <li data-target="#carouselExampleCaptions" data-slide-to="{{$i}}"></li>
+                @endif
+              @endfor
+            @endif
+
+          </ol>
+
+          <div class="carousel-inner">
+          @foreach ($featured_images as $feature)
+            @if($loop -> first)
+
+            <div class="carousel-item active">
+
+              <img src="{{$feature['path']}}" class="d-block mx-auto w-lg-30" alt="{{$feature['series_no']}}">
+            
+              <!-- Caption -->
+              <div class="carousel-caption d-none d-md-block">
+                <h5>&nbsp;</h5>
               </div>
-              @else
-              <div class="carousel-item">
-                <img class="d-block w-100" src="{{$feature}}" alt="">
-                <div class="carousel-caption d-none d-md-block">
-                </div>
-              </div>
-              @endif
-            @endforeach
             </div>
 
-            @if($images_count > 1)
-            <a class="carousel-control-prev" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
+            @else
+
+            <div class="carousel-item">
+            <a href="/product/{{$feature['series_no']}}">
+              <img src="{{$feature['path']}}" class="d-block mx-auto" alt="{{$feature['series_no']}}">
             </a>
-            <a class="carousel-control-next" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
+              <!-- Caption -->
+              <div class="carousel-caption d-none d-md-block">
+                <h5>&nbsp;</h5>
+              </div>
+            </div>
             @endif
-          </div>
+          @endforeach
+
+
+          @if($images_count > 1)
+          <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <i class="fas fa-chevron-left"></i>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <i class="fas fa-chevron-right"></i>
+          </a>
+          @endif
         </div>
       </section>
       @endif
 
+        <!-- ******************** -->
+        <!-- ***** Grid/Cards: Categories *****  -->
+        <!-- ******************** -->
 
-
+        <section class="shadow p-3 bg-white rounded" id="gridSection">
+        <div><h2 class="m-3 mb-5">ALL PRODUCTS</h2></div>
+        <div class="row">
+        @foreach($sub_categories as $sub_category)
+          <div class="col-lg-4 col-md-4 col-sm-6">
+            <div class="card">
+              <img src="{{ $sub_category->image_path }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ $sub_category -> name}}</h5>
+                <p class="card-text"></p>
+                <a href="/categories/{{ $sub_category->code }}" class="stretched-link"></a>
+              </div>
+            </div>
+          </div>
+        @endforeach
+        </div>
+      </section>
 
       <!-- ******************** -->
       <!-- ***** Grid: About Meiko *****  -->
@@ -70,27 +100,27 @@
 
         <div class="mx-4">
           <!-- Excellent Quality -->
-          <div class="row align-items-center my-lg-0 my-5" id="excellentQuality">
-            <div class="col-lg-6 text-center">
+          <div class="row my-lg-0 my-5" id="excellentQuality">
+            <div class="col-lg-6 text-center grid my-auto">
               <h3>
                 <i class="fas fa-check"></i> Excellent Quality
               </h3>
             </div>
 
             <!-- Desc. Q -->
-            <div class="col-lg-6 bg-light text-center">
-              <p><i class="fas fa-quote-left" style="font-size: 1.5rem;"></i> Meiko handtools are manufactured and imported straight from Taiwan and are assured of only the best of quality to ensure customer satisfaction. The people behind Meiko Tools not only sell tools but also actively engage in market research to further develop and improve the product line-up and overall quality. <i class="fas fa-quote-right" style="font-size: 1.5rem;"></i></p>
+            <div class="col-lg-6 bg-light text-center p-3">
+              <p><i class="fas fa-quote-left"></i> Meiko handtools are manufactured and imported straight from Taiwan and China, and are assured of only the best of quality to ensure customer satisfaction. The people behind Meiko Tools not only sell tools but also actively engage in market research to further develop and improve the product line-up and overall quality. <i class="fas fa-quote-right"></i></p>
             </div>
           </div>
 
           <!-- Customer Satisfaction is Guaranteed -->
-          <div class="row align-items-center my-lg-0 my-5">
-            <div class="col-lg-6 order-2 order-lg-1 bg-light text-center">
-              <p><i class="fas fa-quote-left" style="font-size: 1.5rem;"></i> Catering mostly to Filipino, Filipino-Chinese, and Taiwanese businessmen alike, Meiko Tool’s ever expanding variety of products are sure to please every customer both new and old.  <i class="fas fa-quote-right" style="font-size: 1.5rem;"></i></p>
+          <div class="row my-lg-0 my-5">
+            <div class="col-lg-6 order-2 order-lg-1 bg-light text-center p-3">
+              <p><i class="fas fa-quote-left"></i> Catering mostly to Filipino, Filipino-Chinese, and Taiwanese businessmen alike, Meiko Tool’s ever expanding variety of products are sure to please every customer both new and old.  <i class="fas fa-quote-right"></i></p>
             </div>
 
             <!-- Desc. CS -->
-            <div class="col-lg-6 order-1 order-lg-2 text-center">
+            <div class="col-lg-6 order-1 order-lg-2 text-center my-auto">
               <h3>
                 <i class="fas fa-check"></i> Customer Satisfaction is Guaranteed
               </h3>
@@ -99,16 +129,16 @@
 
 
           <!-- Honest Prices -->
-          <div class="row align-items-center my-lg-0 my-5">
-            <div class="col-lg-6 text-center">
+          <div class="row my-lg-0 my-5">
+            <div class="col-lg-6 text-center my-auto">
               <h3>
                 <i class="fas fa-check"></i> Honest Prices
               </h3>
             </div>
 
             <!-- Desc. P -->
-            <div class="col-lg-6 text-center bg-light">
-              <p><i class="fas fa-quote-left" style="font-size: 1.5rem;"></i> Meiko Tools offers highly competitive prices in parallel to its top-notch products.  <i class="fas fa-quote-right" style="font-size: 1.5rem;"></i></p>
+            <div class="col-lg-6 text-center bg-light p-3">
+              <p><i class="fas fa-quote-left"></i> Meiko Tools offers highly competitive prices in parallel to its top-notch products.  <i class="fas fa-quote-right"></i></p>
             </div>
           </div>
         </div>
@@ -207,7 +237,7 @@
             <label for="inquiry_order" class="col-md-2 col-form-label">Inquiry/Order</label>
 
             <div class="col-md-10">
-              <input type="textarea" class="form-control" name="inquiry_order" placeholder="Inquiry/Order" style="height: 300px; width: 100%;" required>
+              <textarea id="inquiry" name="inquiry_order" placeholder="Inquiry/Order" required></textarea>
               @error('inputInquiryOrder')
                   <div class="alert alert-danger">{{ $message }}</div>
               @enderror
@@ -216,13 +246,14 @@
           </div>
 
           <!-- Captcha -->
-          <div class="form-group row">
+          <div class="form-group row my-4">
 
-            <label for="captcha" class="col-md-2 col-form-label">@captcha</label>
+            <label for="captcha" class="col-12 col-form-label text-center">@captcha</label>
 
-            <div class="col-md-10">
 
-              <input type="text" class="form-control" name="captcha" autocomplete="off" required  placeholder="Input captcha">
+            <div class="col-12 d-flex justify-content-center">
+
+              <input type="text" class="form-control text-center" name="captcha" autocomplete="off" required  placeholder="Input captcha" id="captchaInput">
               @error('captcha')
                   <div class="alert alert-danger">{{ $message }}</div>
               @enderror
