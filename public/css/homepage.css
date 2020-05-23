@@ -247,6 +247,10 @@ section {
 	border-bottom: 2px solid #ff6a00;
 }
 
+#contaict_email a {
+	color: #007BFF;
+}
+
 /* Email Icon */
 .emailIcon {
 	color: #ff6a00;
@@ -409,8 +413,16 @@ section {
 /* ---------------------------------------------------
 ----- Breadcrumb -----
 ----------------------------------------------------- */
-#breadcrumb ol {
-	text-transform: uppercase;
+.breadcrumb a {
+	color: #007BFF;
+}
+
+.breadcrumb a:hover {
+	text-decoration: underline;
+}
+
+.breadcrumb {
+	background-color: rgba(66, 134, 244, 0.1);
 }
 
 .breadcrumb {

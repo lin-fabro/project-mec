@@ -33,9 +33,9 @@
             @if($loop -> first)
 
             <div class="carousel-item active">
-            <a href="/product/{{$feature['series_no']}}">
+
               <img src="{{$feature['path']}}" class="d-block mx-auto w-lg-30" alt="{{$feature['series_no']}}">
-            </a>
+
               <!-- Caption -->
               <div class="carousel-caption d-none d-md-block">
                 <h5>&nbsp;</h5>
@@ -77,7 +77,7 @@
         <div><h2 class="m-3 mb-5">ALL PRODUCTS</h2></div>
         <div class="row">
         @foreach($sub_categories as $sub_category)
-          <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="card">
               <img src="{{ $sub_category->image_path }}" class="card-img-top" alt="...">
               <div class="card-body">
@@ -109,7 +109,7 @@
 
             <!-- Desc. Q -->
             <div class="col-lg-6 bg-light text-center p-3">
-              <p><i class="fas fa-quote-left"></i> Meiko handtools are manufactured and imported straight from Taiwan and are assured of only the best of quality to ensure customer satisfaction. The people behind Meiko Tools not only sell tools but also actively engage in market research to further develop and improve the product line-up and overall quality. <i class="fas fa-quote-right"></i></p>
+              <p><i class="fas fa-quote-left"></i> Meiko handtools are manufactured and imported straight from Taiwan and China, and are assured of only the best of quality to ensure customer satisfaction. The people behind Meiko Tools not only sell tools but also actively engage in market research to further develop and improve the product line-up and overall quality. <i class="fas fa-quote-right"></i></p>
             </div>
           </div>
 

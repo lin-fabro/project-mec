@@ -696,11 +696,10 @@
       <!-- ******************** -->
       <!-- ***** Contact Email Information *****  -->
       <!-- ******************** -->
-      <div class="" id="contact_email">
-        <span class="mr-3" style="white-space:pre;"><i class="far fa-envelope emailIcon"></i> inshara@info.com</span>
-        <span class="mr-3" style="white-space:pre;"><i class="far fa-envelope emailIcon"></i> meikotools@gmail.com</span>
-        <span class="mr-3" style="white-space:pre;"><i class="fab fa-facebook-square" style="color:#385898;"></i> ---</span>
-        <span class="" style="white-space:pre;"><i class="fab fa-facebook-messenger" style="color:#385898;"></i> ---</span>
+      <div id="contact_email">
+        <span class="mr-3"><i class="far fa-envelope emailIcon"></i> inshara@info.com / meikotools@gmail.com</span>
+        <span class="mr-3" style="white-space:pre;"><a href="http://www.facebook.com/meikotools"><i class="fab fa-facebook-square" style="color:#385898;"></i>  www.facebook.com/meikotools</a></span>
+
 
       </div>
 
@@ -749,7 +748,7 @@
             </div>
 
             <!-- Contact Us Button-->
-            <div class="d-xl-block">
+            <div class="d-none d-xl-block">
               <li class="nav-item">
               @if($homepage ?? '' == true)
                 <a class="nav-link" href="{{route('index')}}/#contactUsSec" id="contact_us"><i class="fas fa-phone-volume icons"></i> CONTACT US</a>
