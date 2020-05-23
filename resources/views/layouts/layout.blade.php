@@ -40,13 +40,13 @@
 
       <!-- Sidebar Header -->
       <div class="sidebar-header">
-        <h3>Product Category</h3>
+        <img src="/images/logo/meiko_word.png">
       </div>
 
       <!-- Search Bar -->
       <ul class="list-unstyled components">
         <li>
-          <form class="form-inline ml-1 mb-2" method="GET" action="{{$search_action}}">
+          <form class="form-inline mx-1 mb-2" method="GET" action="{{$search_action}}">
             <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="keyword" name="keyword">
             <button class="btn searchIcon" type="submit"><i class="fas fa-search"></i></button>
           </form>
@@ -662,14 +662,22 @@
 
         <hr>
         <li>
-          <a href="/index#aboutMeikoSec" target="_parent"><i class="fas fa-info-circle icons"></i> About Meiko</a>
+          @if($homepage ?? '' == true)
+            <a href="/#aboutMeikoSec"><i class="fas fa-info-circle icons"></i> About Meiko</a>
+          @else
+            <a href="{{route('index')}}/aboutMeikoSec"><i class="fas fa-info-circle icons"></i> About Meiko</a>
+          @endif
         </li>
         <li>
-          <a href="/index#contactUsSec" target="_parent"><i class="fas fa-phone-volume icons"></i> Contact Us</a>
+          @if($homepage ?? '' == true)
+            <a href="/#contactUsSec"><i class="fas fa-phone-volume icons"></i> Contact Us</a>
+          @else
+            <a href="{{route('index')}}/contactUsSec"><i class="fas fa-info-circle icons"></i> Contact Us</a>
+          @endif
         </li>
 
         <li>
-          <a href="/index#contact_email" target="_parent"><i class="fas fa-arrow-alt-circle-up icons"></i> Back to Top</i></a>
+          <a href="/#contact_email"><i class="fas fa-arrow-alt-circle-up icons"></i> Back to Top</i></a>
         </li>
 
       </ul>
@@ -688,9 +696,10 @@
       <!-- ******************** -->
       <!-- ***** Contact Email Information *****  -->
       <!-- ******************** -->
-      <div class="bg-light" id="contact_email">
-        <span><i class="far fa-envelope emailIcon"></i> inshara@info.com</span>
-        <span class="ml-3"><i class="far fa-envelope emailIcon"></i> meikotools@gmail.com</span>
+      <div id="contact_email">
+        <span class="mr-3"><i class="far fa-envelope emailIcon"></i> inshara@info.com / meikotools@gmail.com</span>
+        <span class="mr-3" style="white-space:pre;"><a href="http://www.facebook.com/meikotools"><i class="fab fa-facebook-square" style="color:#385898;"></i>  www.facebook.com/meikotools</a></span>
+
 
       </div>
 
@@ -701,17 +710,21 @@
 
       <nav class="navbar navbar-expand-lg navbar-light justify-content-between sticky-top mb-0 py-0" id="navbar">
 
-        <div id="buttonLogo">
+        <div id="buttonLogo" style="display:inline;">
           <!-- Toggle Sidebar Button -->
+
           <button type="button" id="sidebarCollapse" class="btn">
             <i class="fas fa-bars icons"></i>
             <span>Toggle Sidebar</span>
           </button>
 
+
           <!-- Meiko Logo -->
+
           <a class="navbar-brand" href="/" id="meikoLogo">
             <img src="/images/logo/meiko_icon.jpg" alt="Meiko Tools">
           </a>
+
         </div>
 
         <!-- Navbar Items -->
@@ -720,20 +733,28 @@
 
             <!-- Products Button-->
             <li class="nav-item">
-              <a class="nav-link" href="/products" id="products"><i class="fas fa-tools icons"></i> PRODUCTS</a>
+              <a class="nav-link" href="/categories" id="products"><i class="fas fa-tools icons"></i> PRODUCTS</a>
             </li>
 
             <!-- About Meiko Button-->
             <div class="d-none d-xl-block">
               <li class="nav-item">
+              @if($homepage ?? '' == true)
                 <a class="nav-link" href="{{route('index')}}/#aboutMeikoSec" id="about_meiko"><i class="fas fa-info-circle icons"></i> ABOUT MEIKO</a>
+              @else
+              <a class="nav-link" href="{{route('index')}}/aboutMeikoSec" id="about_meiko"><i class="fas fa-info-circle icons"></i> ABOUT MEIKO</a>
+              @endif
               </li>
             </div>
 
             <!-- Contact Us Button-->
-            <div class="d-xl-block">
+            <div class="d-none d-xl-block">
               <li class="nav-item">
+              @if($homepage ?? '' == true)
                 <a class="nav-link" href="{{route('index')}}/#contactUsSec" id="contact_us"><i class="fas fa-phone-volume icons"></i> CONTACT US</a>
+              @else
+                <a class="nav-link" href="{{route('index')}}/contactUsSec" id="contact_us"><i class="fas fa-phone-volume icons"></i> CONTACT US</a>
+              @endif
               </li>
             </div>
           </ul>
@@ -793,9 +814,6 @@
         <a href="/#contact_email"><i class="fas fa-arrow-up icons"></i></a>
       </div>
 
-      <!-- Small Button Background -->
-      <div id="smallButtonBg"></div>
-
 
       <!-- Content End -->
     </div>
@@ -824,10 +842,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
   <!-- Bootstrap JS -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-  <!-- jQuery Custom Scroller CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
+  <!-- Typeahead JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+
 
   <!-- Custom JS -->
   <script type="text/javascript" src="/js/homepage.js"></script>
