@@ -35,7 +35,7 @@
             <div class="carousel-item active">
 
               <img src="{{$feature['path']}}" class="d-block mx-auto w-lg-30" alt="{{$feature['series_no']}}">
-            
+
               <!-- Caption -->
               <div class="carousel-caption d-none d-md-block">
                 <h5>&nbsp;</h5>

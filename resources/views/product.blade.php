@@ -10,13 +10,15 @@
 
             @foreach ($breadcrumbs as $breadcrumb)
               @if($loop -> first)
-                <li class="breadcrumb-item"><a href="/products">{{$breadcrumb->name}}</a></li>
+                <li class="breadcrumb-item"><a href="/categories">{{$breadcrumb->name}}</a></li>
+              @elseif($loop -> last)
+               <li class="breadcrumb-item"><a href="/products/{{$breadcrumb->code}}">{{ $breadcrumb->name }}</a></li>
               @else
-                <li class="breadcrumb-item"><a href="/products/{{$breadcrumb->code}}">{{$breadcrumb->name}}</a></li>
+                <li class="breadcrumb-item"><a href="/categories/{{$breadcrumb->code}}">{{$breadcrumb->name}}</a></li>
               @endif
             @endforeach
             <!-- Product Name -->
-            <li class="breadcrumb-item active" aria-current="page">{{ $product -> product_name}}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $product -> name}}</li>
           </ol>
         </nav>
       </div>
@@ -65,17 +67,49 @@
 
             <!-- Details -->
             <ul>
-              <li><span>Color: </span>{{ $product -> color}}</li>
+              @if (!empty($product->color))
+                <li><span>Color: </span>{{ $product -> color}}</li>
+              @endif
+              @if (!empty($product->material))
               <li><span>Material: </span>{{ $product -> material}}</li>
+              @endif
+              @if (!empty($product->finish))
               <li><span>Finish: </span>{{ $product -> finish}}</li>
+              @endif
+              @if (!empty($product->features_benefits))
+              <li><span>Features & Benefits: </span>
+                <ul>
+                  @for ($i = 0; $i < count($product->feature_list); $i++)
+                    <li>
+                    {{$product->feature_list[$i]}}
+                    </li>
+                  @endfor
+                </ul>
+              </li>
+              @endif
+              @if (!empty($product->functionalities))
+              <li>
+              <span>Functionalities: </span>
+                <ol>
+                @for ($i = 0; $i < count($product->functionality_list); $i++)
+                  <li>
+                  {{$product->functionality_list[$i]}}
+                  </li>
+                @endfor
+                </ol>
+              </li>
+              @endif
+              @if (!empty($product->includes))
               <li><span>Includes: </span>
                 <ul>
+                  @for ($i = 0; $i < count($product->include_list); $i++)
+                    <li>
+                    {{$product->include_list[$i]}}
+                    </li>
+                  @endfor
                 </ul>
               </li>
-              <li><span>Functionalities: </span>
-                <ul>
-                </ul>
-              </li>
+              @endif
             </ul>
           </div>
         </div>
@@ -84,20 +118,40 @@
         <div class="my-3" id="table1">
           <table>
             <tr>
-              <th style="width: 20%">Series no.</th>
-              <th style="width: 20%">Product ID</th>
-              <th style="width: 20%">Size</th>
-              <th style="width: 20%">Box / Carton</th>
-              <th style="width: 20%">Note</th>
+              <th>Series no.</th>
+              <th>Product ID</th>
+              <th>Size</th>
+              <th>Box / Carton</th>
+              <th>Note</th>
             </tr>
             <!-- Loop here product items -->
             @foreach($product_items as $item)
             <tr>
-              <td>{{$item->series_number}}</td>
-              <td>{{$item->product_code}}</td>
-              <td>{{$item->size}}</td>
-              <td>{{$item->box_carton}}</td>
-              <td>{{$item->note}}</td>
+              @if (!empty($item->series_number))
+                <td>{{$item->series_number}}</td>
+              @else
+                <td>-</td>
+              @endif
+              @if (!empty($item->product_code))
+                <td>{{$item->product_code}}</td>
+              @else
+                <td>-</td>
+              @endif
+              @if (!empty($item->size))
+                <td>{{$item->size}}</td>
+              @else
+                <td>-</td>
+              @endif
+              @if (!empty($item->box_carton))
+                <td>{{$item->box_carton}}</td>
+              @else
+                <td>-</td>
+              @endif
+              @if (!empty($item->note))
+                <td>{{$item->note}}</td>
+              @else
+                <td>-</td>
+              @endif
             </tr>
             @endforeach
           </table>
@@ -105,6 +159,9 @@
 
         <!-- Cards -->
         <div id="cardGrp">
+
+          <h2 class="m-3">Item List</h2>
+
         <!-- Loop here product items -->
         @foreach($product_items as $item)
             <div class="card m-2">
@@ -113,9 +170,21 @@
                     <hr>
                     <h6 class="card-subtitle my-2 text-muted text-center">{{$item->series_number}}</h6>
                     <ul>
-                    <li>Size: <span>{{$item->size}}</span></li>
-                    <li>Box/Carton: {{$item->box_carton}}</li>
-                    <li>Note: <span>{{$item->note}}</span></li>
+                    <li>Size:
+                      @if (!empty($item->size))
+                        <span>{{$item->size}}</span>
+                      @else
+                        <span>-</span>
+                      @endif
+                    </li>
+                    <li>Box/Carton: <span>{{$item->box_carton}}</span></li>
+                    <li>Note:
+                      @if (!empty($item->note))
+                        <span>{{$item->note}}</span>
+                      @else
+                        <span>-</span>
+                      @endif
+                    </li>
                     </ul>
                 </div>
             </div>
@@ -124,13 +193,13 @@
 
       </section>
 
-      <hr>
       @isset($relevant_products)
+      <hr>
       <!-- ******************** -->
       <!-- ***** Related Items *****  -->
       <!-- ******************** -->
-      <section class="shadow p-3 bg-white rounded">
-        <div class="m-3 mb-5"><h2>Related Items</h2></div>
+      <section class="shadow p-3 bg-white rounded" id="relatedItems">
+        <div class="m-3"><h2>Related Items</h2></div>
 
         <!-- Cards -->
         <div class="row">
@@ -153,7 +222,8 @@
         </div>
       </section>
 
-      <hr>
       @endisset
+
+      <hr>
     @endsection
 

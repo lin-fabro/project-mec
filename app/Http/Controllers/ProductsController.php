@@ -80,12 +80,19 @@ class ProductsController extends Controller
 
         $images = $imageController->get_images_path($breadcrumbs, $product->series_code);
         $images_count = count($images);
-        $product_items = ProductItems::where('product_id', '=', $product->id)
-        ->orderBy('product_code','ASC')->get();
 
-        $relevant_products = Products::get_products($keyword, $product->category_code, $querystringArray
+        $product_items = ProductItems::get_product_items($product->id);
+
+        $relevant_products  = Products::get_products($keyword, $product->category_code, $querystringArray
                     , Config::get('constants.options.relevant_size'), $product->series_code);
-        $relevant_products = $imageController->get_default_image($relevant_products);
+
+        if (count($relevant_products) > 0){
+            $relevant_products = $imageController->get_default_image($relevant_products);
+        } else {
+            $relevant_products = null;
+        }
+
+        $product = $this -> parse_lists($product);
 
         return view('product', [
             'product' => $product,
@@ -96,6 +103,23 @@ class ProductsController extends Controller
             'product_items' => $product_items,
             'keyword' => $keyword,
             'product_images'=> $images]);
+    }
+
+    private function parse_lists($product){
+
+        if (!empty($product->includes)){
+            $product->include_list = explode("; ", $product->includes);
+        }
+
+        if (!empty($product->functionalities)){
+            $product->functionality_list = explode("; ", $product->functionalities);
+        }
+
+        if (!empty($product->features_benefits)){
+            $product->feature_list = explode("; ", $product->features_benefits);
+        }
+
+        return $product;
     }
 
 }

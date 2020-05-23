@@ -30,10 +30,22 @@ Route::get('/search', 'ProductsController@search');
 Route::get('/import_excel', 'ImportProductsController@index');
 Route::post('/import_excel/import', 'ImportProductsController@import');
 Route::post('/import_excel/publish', 'ImportProductsController@publish');
+Route::get('/import_excel/template', 'ImportProductsController@download');
 
 
 Route::post('/inquiry', 'InquiriesController@submit');
+Route::get('/inquiry/list', 'InquiriesController@index')->middleware('auth');
+Route::get('/inquiry/{id}', 'InquiriesController@show')->middleware('auth');
+Route::delete('/inquiry/list/{id}', 'InquiriesController@destroy')->middleware('auth');
+Route::post('/inquiry/list/delete', 'InquiriesController@delete')->middleware('auth');
+Route::get('/inquiry/list/export', 'InquiriesController@export')->middleware('auth');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/{anchor}', 'ImagesController@index');
+Route::get('/{anchor}', function(){
+    $anchor = request('anchor');
+    return redirect(route('index'). '#'.$anchor);
+});
