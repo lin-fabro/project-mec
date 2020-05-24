@@ -21,31 +21,31 @@ class DataFromExcelImport implements OnEachRow, WithHeadingRow
         //Inserts records into the import_products table
         ImportProducts::updateOrCreate(
             [
-                'series_number'   => $row['series_number'],
-                'product_code'   => $row['product_id']
+                'series_number'   => Str::of($row['series_number'])->trim(),
+                'product_code'   => Str::of($row['product_id'])->trim()
             ],
             [
-                'product_name' => $row['product_name'],
-                'size' => $row['size'],
-                'box_carton'    => $row['box_carton'],
-                'item_weight'   => $row['item_weight'],
-                'shipping_weight'   => $row['shipping_weight'],
-                'item_dimension'   => $row['item_dimension'],
-                'shipping_dimension'   => $row['shipping_dimension'],
-                'color'   => $row['color'],
-                'material'   => $row['material'],
-                'note'   => $row['note'],
-                'finish'   => $row['finish'],
-                'features_benefits'   => $row['features_benefits'],
-                'includes'   => $row['includes'],
-                'functionalities'   => $row['functionalities'],
-                'category_code_one'   => $row['category_code_one'],
-                'category_name_one'   => $row['category_name_one'],
-                'category_code_two'   => $row['category_code_two'],
-                'category_name_two'   => $row['category_name_two'],
-                'category_code_three'   => $row['category_code_three'],
-                'category_name_three'   => $row['category_name_three'],
-                'process_flag'   => $row['process_flag']
+                'product_name' => Str::of($row['product_name'])->trim(),
+                'size' => Str::of($row['size'])->trim(),
+                'box_carton'    => Str::of($row['box_carton'])->trim(),
+                'item_weight'   => Str::of($row['item_weight'])->trim(),
+                'shipping_weight'   => Str::of($row['shipping_weight'])->trim(),
+                'item_dimension'   => Str::of($row['item_dimension'])->trim(),
+                'shipping_dimension'   => Str::of($row['shipping_dimension'])->trim(),
+                'color'   => Str::of($row['color'])->trim(),
+                'material'   => Str::of($row['material'])->trim(),
+                'note'   => Str::of($row['note'])->trim(),
+                'finish'   => Str::of($row['finish'])->trim(),
+                'features_benefits'   => Str::of($row['features_benefits'])->trim(),
+                'includes'   => Str::of($row['includes'])->trim(),
+                'functionalities'   => Str::of($row['functionalities'])->trim(),
+                'category_code_one'   => Str::of($row['category_code_one'])->trim(),
+                'category_name_one'   => Str::of($row['category_name_one'])->trim(),
+                'category_code_two'   => Str::of($row['category_code_two'])->trim(),
+                'category_name_two'   => Str::of($row['category_name_two'])->trim(),
+                'category_code_three'   => Str::of($row['category_code_three'])->trim(),
+                'category_name_three'   => Str::of($row['category_name_three'])->trim(),
+                'process_flag'   => Str::of($row['process_flag'])->trim()
             ]);
     }
 
