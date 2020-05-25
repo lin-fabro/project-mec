@@ -10,7 +10,7 @@
 
 
 
-        <div class="carousel slide w-70" id="carouselExampleCaptions" data-ride="carousel">
+        <div class="carousel slide w-70" id="carouselExampleCaptions" data-ride="carousel" data-interval="2000">
           <div>
             <h2 class="m-3 mb-4">FEATURED PRODUCTS</h2>
           </div>
@@ -35,7 +35,7 @@
             <div class="carousel-item active">
 
               <img src="{{$feature['path']}}" class="d-block mx-auto w-lg-30" alt="{{$feature['series_no']}}">
-
+            
               <!-- Caption -->
               <div class="carousel-caption d-none d-md-block">
                 <h5>&nbsp;</h5>
