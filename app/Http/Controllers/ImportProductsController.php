@@ -40,7 +40,7 @@ class ImportProductsController extends Controller
     {
 
         $this->validate($request, [
-            'select_file'  => 'required|mimes:xls,xlsx'
+            'select_file'  => 'required|mimes:xls'
         ]);
 
         //This will delete all records from the import_products table
@@ -101,7 +101,7 @@ class ImportProductsController extends Controller
     }
 
     public function download(){
-        return response()->download(storage_path("app/public/import_template.xlsx"));
+        return response()->download(storage_path("app/public/import_template.xls"));
     }
 
     private function parse_categories($import_product) {
