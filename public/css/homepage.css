@@ -500,11 +500,16 @@ th {
 td {
 	word-break: break-all;
 	white-space: pre;
+	font-family: 'Roboto Mono', monospace;
 }
 
 /* Card */
 #cardGrp {
 	display: none;
+}
+
+#cardGrp .card-title, #cardGrp .card-subtitle {
+	font-family: 'Roboto Mono', monospace;
 }
 
 /* ---------------------------------------------------
