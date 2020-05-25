@@ -38,7 +38,7 @@
             <div id="picContainer">
 
               <!-- Big Picture -->
-              <div>
+              <div class="text-center">
                 @if($images_count < 1)
                 <img class="img-fluid" id="bigPic" src="/images/no_image.jpg" alt="">
                 @else

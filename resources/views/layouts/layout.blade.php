@@ -698,8 +698,8 @@
       <!-- ******************** -->
       <div id="contact_email">
         <span class="mr-3"><i class="far fa-envelope emailIcon"></i> inshara@info.com / meikotools@gmail.com</span>
-        <span class="mr-3" style="white-space:pre;"><a href="http://www.facebook.com/meikotools"><i class="fab fa-facebook-square" style="color:#385898;"></i>  www.facebook.com/meikotools</a></span>
-
+        <span class="mr-3" style="white-space:pre;"><a href="http://www.facebook.com/meikotools"><i class="fab fa-facebook-square" style="color:#385898;"></i> www.facebook.com/meikotools</a></span>
+        <!-- <span class="mr-3" style="white-space:pre;"><i class="fab fa-viber" style="color:#665cac;"></i> ---</span> -->
 
       </div>
 
@@ -792,12 +792,18 @@
 
         <!-- Copyright -->
         <div class="row justify-content-between mx-4">
-          <div class="">
+          <div>
+          <span class="mr-3"><i class="far fa-envelope emailIcon"></i> inshara@info.com / meikotools@gmail.com</span>
+          <br>
+          <span class="mr-3" style="white-space:pre;"><a href="http://www.facebook.com/meikotools" id="footerFb"><i class="fab fa-facebook-square" style="color:#385898;"></i> www.facebook.com/meikotools</a></span>
+          <!-- <br>
+          <span class="mr-3" style="white-space:pre;"><i class="fab fa-viber" style="color:#665cac;"></i> ---</span> -->
+
             <p><i class="far fa-copyright"></i> 2020 Inshara General Merchandise Corporation. All rights reserved.</p>
           </div>
 
           <!-- Back to Top Button -->
-          <div>
+          <div id="backToTop">
             <a href="/#contact_email"><i class="fas fa-arrow-alt-circle-up icons"></i> <u>Back to Top</u></a>
           </div>
         </div>
