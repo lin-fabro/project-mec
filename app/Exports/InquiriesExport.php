@@ -39,7 +39,6 @@ class InquiriesExport implements FromQuery, Responsable, WithHeadings, WithMappi
     {
         return [
             $inquiries->created_at,
-            $inquiries->last_name,
             $inquiries->first_name,
             $inquiries->company,
             $inquiries->email,
@@ -52,8 +51,7 @@ class InquiriesExport implements FromQuery, Responsable, WithHeadings, WithMappi
     {
         return [
             'Inquiry Date',
-            'Last Name',
-            'First Name',
+            'Name',
             'Company',
             'Email',
             'Contact No',

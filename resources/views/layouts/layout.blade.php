@@ -23,6 +23,8 @@
   <link href="https://fonts.googleapis.com/css?family=Oxanium&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
 
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 <body>
 

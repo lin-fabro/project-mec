@@ -40,7 +40,9 @@ Route::delete('/inquiry/list/{id}', 'InquiriesController@destroy')->middleware('
 Route::post('/inquiry/list/delete', 'InquiriesController@delete')->middleware('auth');
 Route::get('/inquiry/list/export', 'InquiriesController@export')->middleware('auth');
 
-Auth::routes();
+Auth::routes([
+    'register' => false
+]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 

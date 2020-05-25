@@ -37,8 +37,7 @@
       <table class="table table-bordered table-striped">
        <tr>
        <th>Date</th>
-       <th>Last Name</th>
-       <th>First Name</th>
+       <th>Name</th>
         <th>Company</th>
         <th>Email</th>
         <th>Contact No</th>
@@ -54,7 +53,6 @@
        @foreach($data as $row)
        <tr>
         <td>{{ $row->created_at }}</td>
-        <td>{{ $row->last_name }}</td>
         <td>{{ $row->first_name }}</td>
         <td>{{ $row->company }}</td>
         <td>{{ $row->email }}</td>

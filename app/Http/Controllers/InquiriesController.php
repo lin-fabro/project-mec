@@ -15,31 +15,26 @@ class InquiriesController extends Controller
     {
 
         $validatedData = $request->validate([
-            'last_name' => 'required',
             'first_name' => 'required',
             'company_name' => 'required',
             'email' => 'required|email:rfc,dns',
             'contact_no' => 'required',
             'inquiry_order' => 'required',
-            'captcha' => 'required|captcha',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
 
         $inquiry = new Inquiries();
 
-        $inquiry->last_name = request('last_name');
         $inquiry->first_name = request('first_name');
         $inquiry->company = request('company_name');
         $inquiry->email = request('email');
         $inquiry->contact_no = request('contact_no');
         $inquiry->inquiry = request('inquiry_order');
-        $inquiry->created_at = now();
-        $inquiry->updated_at = now();
 
         $inquiry->save();
 
         $details = array(
             'created_at' => $inquiry->created_at,
-            'last_name' => $request->get('last_name'),
             'first_name' => $request->get('first_name'),
             'email' => $request->get('email'),
             'company' => $request->get('company_name'),
@@ -48,6 +43,7 @@ class InquiriesController extends Controller
         );
 
         \Mail::to('meikotools@gmail.com')
+            ->cc(['inshara@info.com.ph'])
             ->send(new \App\Mail\Inquiries($details));
 
         return back()->with('success', 'Thank you. Your inquiry has been submitted.');
