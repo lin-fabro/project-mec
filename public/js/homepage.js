@@ -38,7 +38,6 @@ $(document).ready(function () {
     });
 
 
-
     // --- Collapse: Sidebar Elements ---
     // Hand Tools
     $("#ddHandTools").on("click", function(){
