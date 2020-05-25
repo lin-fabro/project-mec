@@ -698,7 +698,7 @@
       <!-- ***** Contact Email Information *****  -->
       <!-- ******************** -->
       <div id="contact_email">
-        <span class="mr-3"><i class="far fa-envelope emailIcon"></i> inshara@info.com / meikotools@gmail.com</span>
+        <span class="mr-3"><i class="far fa-envelope emailIcon"></i> inshara@info.com.ph / meikotools@gmail.com</span>
         <span class="mr-3" style="white-space:pre;"><a href="http://www.facebook.com/meikotools"><i class="fab fa-facebook-square" style="color:#385898;"></i> www.facebook.com/meikotools</a></span>
         <span class="mr-3" style="white-space:pre;"><i class="fab fa-viber" style="color:#665cac;"></i> 09171930295</span>
 
@@ -794,7 +794,7 @@
         <!-- Copyright -->
         <div class="row justify-content-between mx-4">
           <div>
-          <span class="mr-3"><i class="far fa-envelope emailIcon"></i> inshara@info.com / meikotools@gmail.com</span>
+          <span class="mr-3"><i class="far fa-envelope emailIcon"></i> inshara@info.com.ph / meikotools@gmail.com</span>
           <br>
           <span class="mr-3" style="white-space:pre;"><a href="http://www.facebook.com/meikotools" id="footerFb"><i class="fab fa-facebook-square" style="color:#385898;"></i> www.facebook.com/meikotools</a></span>
           <br>
