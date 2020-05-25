@@ -67,17 +67,50 @@
 
             <!-- Details -->
             <ul>
-              <li><span>Color: </span>{{ $product -> color}}</li>
+              @if (!empty($product->color))
+                <li><span>Color: </span>{{ $product -> color}}</li>
+              @endif
+              <!-- SAMPLE -->
+              @if (!empty($product->material))
               <li><span>Material: </span>{{ $product -> material}}</li>
+              @endif
+              @if (!empty($product->finish))
               <li><span>Finish: </span>{{ $product -> finish}}</li>
+              @endif
+              @if (!empty($product->features_benefits))
+              <li><span>Features & Benefits: </span>
+                <ul>
+                  @for ($i = 0; $i < count($product->feature_list); $i++)
+                    <li>
+                    {{$product->feature_list[$i]}}
+                    </li>
+                  @endfor
+                </ul>
+              </li>
+              @endif
+              @if (!empty($product->functionalities))
+              <li>
+              <span>Functionalities: </span>
+                <ol>
+                @for ($i = 0; $i < count($product->functionality_list); $i++)
+                  <li>
+                  {{$product->functionality_list[$i]}}
+                  </li>
+                @endfor
+                </ol>
+              </li>
+              @endif
+              @if (!empty($product->includes))
               <li><span>Includes: </span>
                 <ul>
+                  @for ($i = 0; $i < count($product->include_list); $i++)
+                    <li>
+                    {{$product->include_list[$i]}}
+                    </li>
+                  @endfor
                 </ul>
               </li>
-              <li><span>Functionalities: </span>
-                <ul>
-                </ul>
-              </li>
+              @endif
             </ul>
           </div>
         </div>
@@ -95,11 +128,31 @@
             <!-- Loop here product items -->
             @foreach($product_items as $item)
             <tr>
-              <td>{{$item->series_number}}</td>
-              <td>{{$item->product_code}}</td>
-              <td>{{$item->size}}</td>
-              <td>{{$item->box_carton}}</td>
-              <td>{{$item->note}}</td>
+              @if (!empty($item->series_number))
+                <td>{{$item->series_number}}</td>
+              @else
+                <td>-</td>
+              @endif
+              @if (!empty($item->product_code))
+                <td>{{$item->product_code}}</td>
+              @else
+                <td>-</td>
+              @endif
+              @if (!empty($item->size))
+                <td>{{$item->size}}</td>
+              @else
+                <td>-</td>
+              @endif
+              @if (!empty($item->box_carton))
+                <td>{{$item->box_carton}}</td>
+              @else
+                <td>-</td>
+              @endif
+              @if (!empty($item->note))
+                <td>{{$item->note}}</td>
+              @else
+                <td>-</td>
+              @endif
             </tr>
             @endforeach
           </table>
@@ -118,9 +171,21 @@
                     <hr>
                     <h6 class="card-subtitle my-2 text-muted text-center">{{$item->series_number}}</h6>
                     <ul>
-                    <li>Size: <span>{{$item->size}}</span></li>
+                    <li>Size:
+                      @if (!empty($item->size))
+                        <span>{{$item->size}}</span>
+                      @else
+                        <span>-</span>
+                      @endif
+                    </li>
                     <li>Box/Carton: <span>{{$item->box_carton}}</span></li>
-                    <li>Note: <span>{{$item->note}}</span></li>
+                    <li>Note:
+                      @if (!empty($item->note))
+                        <span>{{$item->note}}</span>
+                      @else
+                        <span>-</span>
+                      @endif
+                    </li>
                     </ul>
                 </div>
             </div>
