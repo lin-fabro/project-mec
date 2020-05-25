@@ -28,7 +28,7 @@ class ImportProductsController extends Controller
     function index()
     {
      $data = DB::table('import_products')->orderBy('series_number', 'ASC')->get();
-     //return view('import', compact('data'));
+
      $data_count = count($data);
 
         return view('import', [
@@ -40,18 +40,14 @@ class ImportProductsController extends Controller
     {
 
         $this->validate($request, [
-            'select_file'  => 'required|mimes:xls'
+            'select_file'  => 'required|mimes:xls,xlsx'
         ]);
 
         //This will delete all records from the import_products table
         ImportProducts::truncate();
         try {
 
-            $temp_file = $request->file('select_file')->store('temp');
-            $path=storage_path('app').'/'.$temp_file;
-
-            Excel::import(new DataFromExcelImport, $path);
-            Storage::delete($temp_file);
+            Excel::import(new DataFromExcelImport, request()->file('select_file'));
 
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             $failures = $e->failures();
