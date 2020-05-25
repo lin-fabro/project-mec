@@ -15,6 +15,8 @@ class Products extends Model
     */
    protected $guarded = [];
 
+   protected $appends = ['include_list','functionality_list','feature_list'];
+
    public static function get_products_by_category_code($category_code){
     return  DB::table('products')
         ->where('category_code', '=', $category_code)
@@ -53,4 +55,17 @@ class Products extends Model
         })-> paginate($pagesize)->onEachSide(1)
         -> appends($querystringArray);
    }
+
+   public function getIncludeListAttribute(){
+        return explode("; ", $this->includes);
+   }
+
+   public function getFunctionalityListAttribute(){
+        return explode("; ", $this->functionalities);
+   }
+
+   public function getFeatureListAttribute(){
+        return explode("; ", $this->features_benefits);
+   }
+
 }

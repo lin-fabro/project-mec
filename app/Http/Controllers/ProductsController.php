@@ -92,8 +92,6 @@ class ProductsController extends Controller
             $relevant_products = null;
         }
 
-        $product = $this -> parse_lists($product);
-
         return view('product', [
             'product' => $product,
             'breadcrumbs' => $breadcrumbs,
@@ -103,23 +101,6 @@ class ProductsController extends Controller
             'product_items' => $product_items,
             'keyword' => $keyword,
             'product_images'=> $images]);
-    }
-
-    private function parse_lists($product){
-
-        if (!empty($product->includes)){
-            $product->include_list = explode("; ", $product->includes);
-        }
-
-        if (!empty($product->functionalities)){
-            $product->functionality_list = explode("; ", $product->functionalities);
-        }
-
-        if (!empty($product->features_benefits)){
-            $product->feature_list = explode("; ", $product->features_benefits);
-        }
-
-        return $product;
     }
 
 }

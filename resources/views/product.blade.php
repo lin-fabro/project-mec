@@ -138,7 +138,7 @@
                 <td>-</td>
               @endif
               @if (!empty($item->size))
-                <td>{{$item->size}}</td>
+                <td>{!! $item->parsed_size !!}</td>
               @else
                 <td>-</td>
               @endif
@@ -148,7 +148,7 @@
                 <td>-</td>
               @endif
               @if (!empty($item->note))
-                <td>{{$item->note}}</td>
+                <td>{!! $item->parsed_note !!}</td>
               @else
                 <td>-</td>
               @endif
