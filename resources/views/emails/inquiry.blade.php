@@ -10,9 +10,9 @@
     <p>You received an inquiry from : {{ $details['first_name']}}</p>
     <p>Here are the details:</p>
     <p>Date: {{ $details['created_at'] }}</p>
-    <p>First Name: {{ $details['first_name'] }}</p>
-    <p>Last Name: {{ $details['last_name'] }}</p>
+    <p>Name: {{ $details['first_name'] }}</p>
     <p>Email: {{ $details['email'] }}</p>
+    <p>Company: {{ $details['company'] }}</p>
     <p>Contact No: {{ $details['contact_no'] }}</p>
     <p>Inquiry: {{ $details['inquiry'] }}</p>
     <p>Thank You</p>

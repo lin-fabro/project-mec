@@ -1,14 +1,20 @@
 @extends('layouts.layout', ['search_action' => $search_action])
       @section('main_content')
 
+      <!-- ***** Message Alert *****  -->
+      @if($message = Session::get('success'))
+      <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+              <strong>{{ $message }}</strong>
+      </div>
+      @endif
+
       <!-- ******************** -->
       <!-- ***** Carousel: Featured Products *****  -->
       <!-- ******************** -->
 
       @if($images_count > 0)
       <section class="shadow p-3 bg-white rounded" id="carousel">
-
-
 
         <div class="carousel slide w-70" id="carouselExampleCaptions" data-ride="carousel" data-interval="2000">
           <div>
@@ -35,7 +41,7 @@
             <div class="carousel-item active">
 
               <img src="{{$feature['path']}}" class="d-block mx-auto w-lg-30" alt="{{$feature['series_no']}}">
-            
+
               <!-- Caption -->
               <div class="carousel-caption d-none d-md-block">
                 <h5>&nbsp;</h5>
@@ -158,27 +164,13 @@
         <form class="border rounded p-3" method="post" enctype="multipart/form-data" action="{{ url('/inquiry') }}">
         {{ csrf_field() }}
 
-          <!-- Last Name -->
-          <div class="form-group row">
-
-            <label for="last_name" class="col-md-2 col-form-label">Last Name</label>
-
-            <div class="col-md-10">
-              <input type="text" class="form-control" name="last_name" placeholder="Dela Cruz" required>
-              @error('inputLastName')
-                  <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
-            </div>
-
-          </div>
-
           <!-- First Name -->
           <div class="form-group row">
 
-            <label for="first_name" class="col-md-2 col-form-label">First Name</label>
+            <label for="first_name" class="col-md-2 col-form-label">Name</label>
 
             <div class="col-md-10">
-              <input type="text" class="form-control" name="first_name" placeholder="Juan" required>
+              <input type="text" class="form-control" name="first_name" placeholder="Juan dela Cruz" required>
               @error('inputFirstName')
                   <div class="alert alert-danger">{{ $message }}</div>
               @enderror
@@ -248,13 +240,10 @@
           <!-- Captcha -->
           <div class="form-group row my-4">
 
-            <label for="captcha" class="col-12 col-form-label text-center">@captcha</label>
-
-
             <div class="col-12 d-flex justify-content-center">
 
-              <input type="text" class="form-control text-center" name="captcha" autocomplete="off" required  placeholder="Input captcha" id="captchaInput">
-              @error('captcha')
+              {!! NoCaptcha::display() !!}
+              @error('g-recaptcha-response')
                   <div class="alert alert-danger">{{ $message }}</div>
               @enderror
             </div>
