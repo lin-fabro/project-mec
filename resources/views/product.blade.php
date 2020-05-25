@@ -70,7 +70,6 @@
               @if (!empty($product->color))
                 <li><span>Color: </span>{{ $product -> color}}</li>
               @endif
-              <!-- SAMPLE -->
               @if (!empty($product->material))
               <li><span>Material: </span>{{ $product -> material}}</li>
               @endif
