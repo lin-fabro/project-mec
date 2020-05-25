@@ -242,14 +242,20 @@ section {
 ----------------------------------------------------- */
 #contact_email {
 	padding-left: 15px;
-	background-color: #2d2b29;
-	color: whitesmoke;
+	background-color: whitesmoke;
+	color: rgba(45, 43, 41, 1);
 	border-bottom: 2px solid #ff6a00;
 }
 
-#contaict_email a {
+#contact_email a {
 	color: #007BFF;
 }
+
+#contact_email a:hover {
+	color: #007BFF;
+	text-decoration: underline;
+}
+
 
 /* Email Icon */
 .emailIcon {
@@ -425,10 +431,6 @@ section {
 	background-color: rgba(66, 134, 244, 0.1);
 }
 
-.breadcrumb {
-	background-color: rgba(66, 134, 244, 0.1);
-}
-
 /* ---------------------------------------------------
 ----- Product Picture & Details -----
 ----------------------------------------------------- */
@@ -567,6 +569,7 @@ td {
 	border: none;
 }
 
+
 #gridSection .card:hover {
 	border: 1px solid #ff6a00;
 	transform: scale(1.05);
@@ -609,8 +612,13 @@ td {
 /* ---------------------------------------------------
 ----- Footer -----
 ----------------------------------------------------- */
+#footer {
+	padding-top: 0;
+	margin-top: 0;
+}
+
 /* Back to Top */
-#footer a:hover {
+#backToTop a:hover {
 	color: #ff6a00;
 }
 
@@ -622,6 +630,16 @@ td {
 /* Button: Back to Top (small) */
 #goToTop {
 	display: none;
+}
+
+/* Facebook Contact Detail */
+#footerFb {
+	color: #007BFF;
+}
+
+#footerFb:hover {
+	color: #007BFF;
+	text-decoration: underline;
 }
 
 
