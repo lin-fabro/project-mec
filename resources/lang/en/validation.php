@@ -146,6 +146,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'first_name' => 'Name',
+        'inquiry_order' => 'Inquiry/Order',
+        'g-recaptcha-response' => 'Captcha'
+    ],
 
 ];

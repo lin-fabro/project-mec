@@ -9,6 +9,13 @@
       </div>
       @endif
 
+      @error('g-recaptcha-response')
+        <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+              <strong>{{ $message }}</strong>
+        </div>
+      @enderror
+
       <!-- ******************** -->
       <!-- ***** Carousel: Featured Products *****  -->
       <!-- ******************** -->
@@ -239,15 +246,9 @@
 
           <!-- Captcha -->
           <div class="form-group row my-4">
-
             <div class="col-12 d-flex justify-content-center">
-
               {!! NoCaptcha::display() !!}
-              @error('g-recaptcha-response')
-                  <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
             </div>
-
           </div>
 
           <!-- Submit Button-->
