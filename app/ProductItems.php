@@ -14,7 +14,7 @@ class ProductItems extends Model
     */
    protected $guarded = [];
 
-   protected $appends = ['parsed_note','parsed_size'];
+   protected $appends = ['parsed_note','parsed_size','list_note','list_size'];
 
    public static function get_product_items($product_id){
 
@@ -31,5 +31,13 @@ class ProductItems extends Model
    public function getParsedSizeAttribute(){
         $buffer = str_replace(array("\r", "\n"), '', $this->size);
         return trim(str_replace("; ", "<br/>", $buffer));
+   }
+
+   public function getListSizeAttribute(){
+     return array_filter(explode(";", $this->size));
+   }
+
+   public function getListNoteAttribute(){
+     return array_filter(explode(";", $this->note));
    }
 }

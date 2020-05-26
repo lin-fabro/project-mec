@@ -172,7 +172,13 @@
                     <ul>
                     <li>Size:
                       @if (!empty($item->size))
-                        <span>{{$item->size}}</span>
+                        <ul>
+                          @for ($i = 0; $i < count($item->list_size); $i++)
+                            <li>
+                            <span>{{ trim($item->list_size[$i]) }}</span>
+                            </li>
+                          @endfor
+                        </ul>
                       @else
                         <span>-</span>
                       @endif
@@ -180,7 +186,13 @@
                     <li>Box/Carton: <span>{{$item->box_carton}}</span></li>
                     <li>Note:
                       @if (!empty($item->note))
-                        <span>{{$item->note}}</span>
+                        <ul>
+                          @for ($i = 0; $i < count($item->list_note); $i++)
+                            <li>
+                            <span>{{ trim($item->list_note[$i]) }}</span>
+                            </li>
+                          @endfor
+                        </ul>
                       @else
                         <span>-</span>
                       @endif
