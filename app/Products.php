@@ -57,15 +57,15 @@ class Products extends Model
    }
 
    public function getIncludeListAttribute(){
-        return explode("; ", $this->includes);
+        return array_filter(explode("; ", $this->includes));
    }
 
    public function getFunctionalityListAttribute(){
-        return explode("; ", $this->functionalities);
+        return array_filter(explode("; ", $this->functionalities));
    }
 
    public function getFeatureListAttribute(){
-        return explode("; ", $this->features_benefits);
+        return array_filter(explode("; ", $this->features_benefits));
    }
 
 }
